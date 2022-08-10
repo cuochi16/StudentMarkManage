@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author nguye
  */
-public class AdminManage implements Action {
+public class AdminManage implements Action<Admin> {
 
     @Override
     public Admin add() {
@@ -42,30 +42,24 @@ public class AdminManage implements Action {
         ad.setphonenumber(s.nextInt());        
         System.out.println("Enter Adress:");
         ad.setadminId(s.nextLine());
-        return new Admin();
+        return ad;
     }
 
     @Override
-    public boolean edit(ArrayList<Object> Admin) {
+    public boolean edit(ArrayList<Admin> Admin) {
         return true;
     }
 
     @Override
-    public boolean delete(ArrayList<Object> Admin) {
+    public boolean delete(ArrayList<Admin> Admin) {
         return true;
     }
 
     @Override
-    public void show(ArrayList<Object> Admin) {
+    public void show(ArrayList<Admin> list) {
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).getadminId());
+        }
         
     }
-
-    public void edit(List<Admin> admin) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void delete(List<Admin> admin) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

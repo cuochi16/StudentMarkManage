@@ -13,7 +13,7 @@ import StudentManagement.Person;
  *
  * @author nguye
  */
-public class PersonManage implements Action {
+public class PersonManage implements Action<Person> {
 
     @Override
     public Person add() {
@@ -22,17 +22,17 @@ public class PersonManage implements Action {
     }
 
     @Override
-    public boolean edit(ArrayList<Object> items) {
+    public boolean edit(ArrayList<Person> items) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean delete(ArrayList<Object> items) {
+    public boolean delete(ArrayList<Person> items) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void show(ArrayList<Object> items) {
+    public void show(ArrayList<Person> items) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

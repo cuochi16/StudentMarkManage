@@ -11,12 +11,12 @@ import java.util.ArrayList;
  *
  * @author nguye
  */
-public interface Action {
+public interface Action<T> {
 
     public Object add();
-    public boolean edit(ArrayList<Object> items);
-    public boolean delete(ArrayList<Object> items);
-    public void show(ArrayList<Object> items);
+    public boolean edit(ArrayList<T> items);
+    public boolean delete(ArrayList<T> items);
+    public void show(ArrayList<T> items);
     /**
      * @param args the command line arguments
      */
