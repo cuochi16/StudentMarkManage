@@ -22,6 +22,10 @@ public class Student extends Person {
       this.phonenumber = phonenumber;
       this.address= address;
       }
+
+    public Student() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
       public String getstudentId()
       {
           return Id;

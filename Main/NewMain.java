@@ -9,7 +9,7 @@ import Controller.AdminManage;
 import StudentManagement.Admin;
 import StudentManagement.Subject;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -24,7 +24,7 @@ public class NewMain {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         AdminManage adm = new AdminManage();
-//        List<Admin> admin = new ArrayList<Admin>();
+        ArrayList<Admin> admin = new ArrayList<Admin>();
         while(true)
         {
                 System.out.println("Add");
@@ -37,8 +37,9 @@ public class NewMain {
 			switch (choose) {
 			case 1:
 				System.out.println("Add");
-                                adm.add();
+                                admin.add(adm.add());
 				break;
+
 			case 2:
 				System.out.println("Edit");
 //                                adm.edit();
@@ -49,6 +50,7 @@ public class NewMain {
 				break;
                         case 4:
 				System.out.println("Show");
+                                adm.show(admin);
 				break;
 			default:
 				System.out.println("Thang ngu co dau ma chon");

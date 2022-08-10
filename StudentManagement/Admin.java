@@ -12,33 +12,34 @@ import java.util.Date;
  * @author nguye
  */
 public class Admin extends Person {
-    public Admin(String adminId, String adminName, Date dob, String email, int phonenumber, String address)
-      {
-      adminId = Id;
-      adminName = Name;
-      this.dob = dob;
-      this.email= email;
-      this.phonenumber = phonenumber;
-      this.address= address;
-      }
 
-    public Admin() {
-    }
+    public String adminId;
+    public String adminName;
+//    public Admin(String adminId, String adminName, Date dob, String email, int phonenumber, String address)
+//      {
+//        adminId = Id;
+//        adminName = Name;
+//        this.dob = dob;
+//        this.email= email;
+//        this.phonenumber = phonenumber;
+//        this.address= address;
+//      }
+
       public String getadminId()
       {
-          return Id;
+          return adminId;
       }
-      public void setadminId(String adminId)
+      public void setadminId(String a)
       {
-          adminId= Id;
+          adminId= a;
       }
       public String getadminName()
       {
-          return Name;
+          return adminName;
       }
-      public void setadminName(String adminName)
+      public void setadminName(String b)
       {
-          adminName=Name;
+          adminName=b;
       }
       public Date getdob()
       {
