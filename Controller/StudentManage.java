@@ -20,41 +20,120 @@ public class StudentManage implements Action<Student>{
 
     @Override
     public Student add() {
-        Student ad = new Student();
+        Student st = new Student();
         Scanner s = new Scanner(System.in);
         System.out.println("Enter AdminID:");
-        ad.setstudentId(s.nextLine());
+        st.setstudentId(s.nextLine());
         System.out.println("Enter Name:");
-        ad.setstudentName(s.nextLine());
+        st.setstudentName(s.nextLine());
         System.out.println("Enter DoB:");
         SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            ad.setdob(date.parse(s.nextLine()));
+            st.setdob(date.parse(s.nextLine()));
         } catch (ParseException ex) {
             Logger.getLogger(AdminManage.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println("Enter Email:");
-        ad.setemail(s.nextLine());
+        st.setemail(s.nextLine());
         System.out.println("Enter Numberphone:");
-        ad.setphonenumber(s.nextInt());        
+        st.setphonenumber(s.nextInt());        
         System.out.println("Enter Adress:");
-        ad.setaddress(s.nextLine());
+        st.setaddress(s.nextLine());
         return new Student();
     }
 
     @Override
-    public boolean edit(ArrayList<Student> items) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean edit(ArrayList<Student> listst) {
+        Scanner s = new Scanner(System.in);
+        System.out.print("Nhap ID can sua: ");
+        String tempID = s.nextLine();
+        for (int i = 0; i < listst.size(); i++) {
+            Student student = listst.get(i);
+            if(student.getstudentId().equals(tempID)){
+                boolean a = true;
+                while(a)
+                {
+                    System.out.println("****************************");
+                    System.out.println("1.Edit name");
+                    System.out.println("2.Edit DoB");
+                    System.out.println("3.Edit email");
+                    System.out.println("4.Edit phonenumber");
+                    System.out.println("5.Edit address");
+                    System.out.println("6.Exit");
+                    System.out.print("Chon chuc nang : ");
+                            int choose1 = s.nextInt();
+                            switch (choose1) {
+                            case 1:
+                                    System.out.print("Edit name: ");
+                                    s = new Scanner(System.in);
+                                    String temp = s.nextLine();
+                                    student.setstudentName(temp);
+                                    break;
+
+                            case 2:
+                                    System.out.println("Edit DoB");
+                                    SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+                                    try {
+                                        student.setdob(date.parse(s.nextLine()));
+                                    } catch (ParseException ex) {
+                                        Logger.getLogger(AdminManage.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    break;
+                            case 3:
+                                    System.out.println("Edit email");
+                                    s = new Scanner(System.in);
+                                    student.setemail(s.nextLine());
+                                    break;
+                            case 4:
+                                    System.out.println("Edit phonenumber");
+                                    s = new Scanner(System.in);
+                                    student.setphonenumber(s.nextInt());
+                                    break;
+                            case 5:
+                                    System.out.println("Edit address");
+                                    s = new Scanner(System.in);
+                                    student.setaddress(s.nextLine());
+                                    break;
+                            case 6:
+                                    System.out.println("Exit");
+                                    a = false;
+                                    break;
+                            default:
+                                    System.out.println("Thang ngu co dau ma chon");
+                                    break;
+                            }
+                }
+            }
+            else{
+                System.out.println("Khong tim thay ID nay");
+            }
+        }
+        return true;
     }
 
     @Override
-    public boolean delete(ArrayList<Student> items) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean delete(ArrayList<Student> listst) {
+        Scanner s = new Scanner(System.in);
+        System.out.print("Nhap ID can xoa: ");
+        String tempID = s.nextLine();
+        for (int i = 0; i < listst.size(); i++) {
+            if(listst.get(i).getstudentId().equals(tempID)){
+                listst.remove(i);
+                System.out.println("Xoa thanh cong 1 thang ngu");
+            }
+            else{
+                System.out.println("Co thang nay dau ma xoa thang dan don!!!");
+            }
+        }
+        return true;
     }
 
     @Override
-    public void show(ArrayList<Student> items) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void show(ArrayList<Student> listst) {
+        for (int i = 0; i < listst.size(); i++) {
+            System.out.printf("|%-10s |%-15s | %-30s | %-15s| %-15s|%-10s |%n", listst.get(i).getstudentId(),listst.get(i).getstudentName(),listst.get(i).getdob(),listst.get(i).getemail(),listst.get(i).getphonenumber(),listst.get(i).getaddress());
+        }
+        
     }
     
 }

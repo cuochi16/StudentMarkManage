@@ -13,8 +13,8 @@ import java.util.Date;
  */
 public class Admin extends Person {
 
-    public String adminId;
-    public String adminName;
+    private String adminId;
+    private String adminName;
 //    public Admin(String adminId, String adminName, Date dob, String email, int phonenumber, String address)
 //      {
 //        adminId = Id;
@@ -73,5 +73,4 @@ public class Admin extends Person {
       {
           this.address=address;
       }
-    
 }

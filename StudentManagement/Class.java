@@ -6,7 +6,6 @@
 package StudentManagement;
 
 
-
 /**
  *
  * @author anhva
@@ -14,14 +13,26 @@ package StudentManagement;
 public class Class {
     private String classID;
     private String className;
-    private Student student;
-    private Subject subject;
     
-    public Class(String classID, String className, Student student, Subject subject)
-    {
-        this.classID=classID;
-        this.className=className;
-        this.student=student;
-        this.subject=subject;
+//    public Class(String classID, String className, Student student, Subject subject)
+//    {
+//        this.classID=classID;
+//        this.className=className;
+//        this.student=student;
+//        this.subject=subject;
+//    }
+    
+    
+    public String getclassID(){
+        return classID;
+    }
+    public void setclassID(String a){
+        classID = a;
+    }
+    public String getclassName(){
+        return className;
+    }
+    public void setclassName(String a){
+        className = a;
     }
 }

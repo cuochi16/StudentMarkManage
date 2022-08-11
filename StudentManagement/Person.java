@@ -12,10 +12,10 @@ import java.util.Date;
  * @author nguye
  */
 public class Person {
-    String Id;
-    String Name;
-    Date dob;
-    String email;
-    int phonenumber;
-    String address;
+   public String Id;
+   public String Name;
+   public Date dob;
+   public String email;
+   public int phonenumber;
+   public String address;
 }

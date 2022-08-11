@@ -12,35 +12,36 @@ import java.util.Date;
  * @author anhva
  */
 public class Student extends Person {
+    private String studentId;
+    private String studentName;
+    private Class classID;
  
-      public Student(String studentId, String studentName, Date dob, String email, int phonenumber, String address)
-      {
-      studentId = Id;
-      studentName = Name;
-      this.dob = dob;
-      this.email= email;
-      this.phonenumber = phonenumber;
-      this.address= address;
-      }
+//      public Student(String studentId, String studentName, Date dob, String email, int phonenumber, String address)
+//      {
+//      studentId = Id;
+//      studentName = Name;
+//      this.dob = dob;
+//      this.email= email;
+//      this.phonenumber = phonenumber;
+//      this.address= address;
+//      }
 
-    public Student() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
       public String getstudentId()
       {
-          return Id;
+          return studentId;
       }
-      public void setstudentId(String studentId)
+      public void setstudentId(String a)
       {
-          studentId= Id;
+          studentId= a;
       }
       public String getstudentName()
       {
-          return Name;
+          return studentName;
       }
-      public void setstudentName(String studentName)
+      public void setstudentName(String b)
       {
-          studentName=Name;
+          studentName=b;
       }
       public Date getdob()
       {
@@ -74,13 +75,4 @@ public class Student extends Person {
       {
           this.address=address;
       }
-      
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
 }

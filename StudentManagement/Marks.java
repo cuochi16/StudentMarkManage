@@ -16,14 +16,14 @@ public class Marks
         {
           private String markId;
           private Student student;
-          private List<Subject> subject;
+          private Subject subject;
           private String mark;
           
           public Marks(String markId, Student student, Subject subject, String mark)
           {
-            this.markId=markId;
-            this.student=student;
-            this.subject = new ArrayList<Subject>();
+            this.markId = markId;
+            this.student = student;
+            this.subject = subject;
             this.mark = mark;
           }
 }
