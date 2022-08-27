@@ -16,15 +16,22 @@ import java.util.List;
 public class Subject {
      private String subjectID;
      private String subjectName;
-     private String mark;
      
-     public Subject(String subjectID,String subjectName, String mark)
-     {
-      this.subjectID=subjectID;
-      this.subjectName=subjectName;
-      this.mark=mark;
-     }
-     public static void main(String[] args) {
-        List<Subject> subject = new ArrayList<Subject>();
+//     public Subject(String subjectID,String subjectName)
+//     {
+//      this.subjectID=subjectID;
+//      this.subjectName=subjectName;
+//     }
+    public String getsubjectID(){
+        return subjectID;
+    }
+    public void setsubjectID(String a){
+        subjectID = a;
+    }
+    public String getsubjectName(){
+        return subjectName;
+    }
+    public void setsubjectName(String b){
+        subjectName = b;
     }
 }

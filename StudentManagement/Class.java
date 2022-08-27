@@ -32,7 +32,7 @@ public class Class {
     public String getclassName(){
         return className;
     }
-    public void setclassName(String a){
-        className = a;
+    public void setclassName(String b){
+        className = b;
     }
 }

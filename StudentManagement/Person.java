@@ -12,10 +12,32 @@ import java.util.Date;
  * @author nguye
  */
 public class Person {
-   public String Id;
-   public String Name;
-   public Date dob;
+   public String ID;
+   public String name;
    public String email;
-   public int phonenumber;
-   public String address;
+
+      public String getID()
+      {
+          return ID;
+      }
+      public void setID(String a)
+      {
+          ID= a;
+      }
+      public String getName()
+      {
+          return name;
+      }
+      public void setName(String a)
+      {
+          name=a;
+      }
+      public String getEmail()
+      {
+          return email;
+      }
+      public void setEmail(String a)
+      {
+          email=a;
+      }
 }

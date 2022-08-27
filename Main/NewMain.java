@@ -7,10 +7,14 @@ package Main;
 
 import Controller.AdminManage;
 import Controller.ClassManage;
+import Controller.MarkManage;
 import Controller.StudentManage;
+import Controller.SubjectManage;
 import StudentManagement.Admin;
 import StudentManagement.Student;
 import StudentManagement.Class;
+import StudentManagement.Marks;
+import StudentManagement.Subject;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -26,9 +30,15 @@ public class NewMain {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         AdminManage adm = new AdminManage();
-        ArrayList<Admin> admin = new ArrayList<Admin>();
+        ArrayList<Admin> admin = new ArrayList<>();
         StudentManage stm = new StudentManage();
-        ArrayList<Student> student = new ArrayList<Student>();
+        ArrayList<Student> student = new ArrayList<>();
+        SubjectManage subm = new SubjectManage();
+        ArrayList<Subject> subject = new ArrayList<>();
+        ClassManage clm = new ClassManage();
+        ArrayList<Class> classs = new ArrayList<>();
+        MarkManage markm = new MarkManage();
+        ArrayList<Marks> mark = new ArrayList<>();
         while(true)
         {
             System.out.println("****************************");
@@ -43,25 +53,31 @@ public class NewMain {
             int choose = s.nextInt();
             switch (choose) {
             case 1:
+                    System.out.println("You have selected Admin Manage");
                     MenuAdmin(adm, admin);
                     break;
             case 2:
-                    MenuStudent(stm, student);
+                    System.out.println("You have selected Student Manage");
+                    MenuStudent(stm, student, classs);
                     break;
             case 3:
-                    System.out.println("Subject Manage");
-                    MenuAdmin(adm, admin);
+                    System.out.println("You have selected Subject Manage");
+                    MenuSubject(subm, subject);
                     break;
-                        case 4:
-                    System.out.println("Class Manage");
-                    MenuAdmin(adm, admin);
+            case 4:
+                    System.out.println("You have selected Class Manage");
+                    MenuClass(clm, classs);
                     break;
-                        case 5:
-                    System.out.println("Mark Manage");
-                    MenuAdmin(adm, admin);
+            case 5:
+                    System.out.println("You have selected Mark Manage");
+                    MenuMark(markm, mark, student, subject);
+                    break;
+            case 6:
+                    System.out.println("Goodbye!!");
+                    System.exit(0);
                     break;
             default:
-                    System.out.println("Thang ngu co dau ma chon");
+                    System.out.println("This option is not available! Please re-enter.");
                     break;
             }
         }
@@ -85,7 +101,7 @@ public class NewMain {
 			switch (choosead) {
 			case 1:
 				System.out.println("Add");
-                                admin.add(adm.add());
+                                admin.add(adm.add(admin));
 				break;
 			case 2:
 				System.out.println("Edit");
@@ -97,19 +113,19 @@ public class NewMain {
 				break;
                         case 4:
 				System.out.println("Show");
-                                System.out.printf("|%-10s |%-15s | %-30s | %-15s| %-15s|%-10s |%n","ID","Name","DoB","Email","PhoneNumber","Address");
+                                System.out.printf("| %-3s | %-10s | %-20s | %-15s | %-15s |%n","STT","ID","Name","Email","Position");
                                 adm.show(admin);
 				break;
 			case 5:
                                 menuad = false;
 				break;
 			default:
-				System.out.println("Thang ngu co dau ma chon");
+				System.out.println("This option is not available! Please re-enter.");
 				break;
 			}
         }
     }
-    private static void MenuStudent(StudentManage stm, ArrayList<Student> student){
+    private static void MenuStudent(StudentManage stm, ArrayList<Student> student, ArrayList<Class> classs){
         Scanner s = new Scanner(System.in);
         boolean menuad = true;
         while(menuad)
@@ -126,11 +142,11 @@ public class NewMain {
             switch (choosead) {
             case 1:
                     System.out.println("Add");
-                    student.add(stm.add());
+                    student.add(stm.add(student,classs));
                     break;   
             case 2:
                     System.out.println("Edit");
-                    stm.edit(student);
+                    stm.edit(student,classs);
                     break;
             case 3:
                     System.out.println("Delete");
@@ -138,14 +154,55 @@ public class NewMain {
                     break;
             case 4:
                     System.out.println("Show");
-                    System.out.printf("|%-10s |%-15s | %-30s | %-15s| %-15s|%-10s |%n","ID","Name","DoB","Email","PhoneNumber","Address");
+                    System.out.printf("| %-3s | %-10s |%-15s | %-30s | %-15s | %-15s | %-10s | %-10s |%n","STT","ID","Name","DoB","Email","PhoneNumber","Address","Class");
                     stm.show(student);
                     break;
             case 5:
-                                menuad = false;
+                    menuad = false;
                     break;
             default:
-                    System.out.println("Thang ngu co dau ma chon");
+                    System.out.println("This option is not available! Please re-enter.");
+                    break;
+            }
+        }
+    }
+    private static void MenuSubject(SubjectManage subm, ArrayList<Subject> subject){
+        Scanner s = new Scanner(System.in);
+        boolean menusub = true;
+        while(menusub)
+        {
+            System.out.println("*****Subject Manage******");
+            System.out.println("||       1.Add         ||");
+            System.out.println("||       2.Edit        ||");
+            System.out.println("||       3.Delete      ||");
+            System.out.println("||       4.Show        ||");
+            System.out.println("||       5.Exit        ||");
+            System.out.println("*************************");
+            System.out.print("Chon chuc nang : ");
+            int choosead = s.nextInt();
+            switch (choosead) {
+            case 1:
+                    System.out.println("Add");
+                    subject.add(subm.add(subject));
+                    break;   
+            case 2:
+                    System.out.println("Edit");
+                    subm.edit(subject);
+                    break;
+            case 3:
+                    System.out.println("Delete");
+                    subm.delete(subject);
+                    break;
+            case 4:
+                    System.out.println("Show");
+                    System.out.printf("| %-3s | %-10s | %-10s |%n","STT","ID","Name");
+                    subm.show(subject);
+                    break;
+            case 5:
+                    menusub = false;
+                    break;
+            default:
+                    System.out.println("This option is not available! Please re-enter.");
                     break;
             }
         }
@@ -167,7 +224,7 @@ public class NewMain {
             switch (choosecl) {
             case 1:
                     System.out.println("Add");
-                    classs.add(clm.add());
+                    classs.add(clm.add(classs));
                     break;   
             case 2:
                     System.out.println("Edit");
@@ -179,17 +236,57 @@ public class NewMain {
                     break;
             case 4:
                     System.out.println("Show");
-                    System.out.printf("|%-10s |%-15s | %-30s | %-15s| %-15s|%-10s |%n","ID","Name","DoB","Email","PhoneNumber","Address");
+                    System.out.printf("| %-3s | %-10s | %-10s |%n","STT","ID","Name");
                     clm.show(classs);
                     break;
             case 5:
                     menucl = false;
                     break;
             default:
-                    System.out.println("Thang ngu co dau ma chon");
+                    System.out.println("This option is not available! Please re-enter.");
                     break;
             }
         }
     }
-    
+    private static void MenuMark(MarkManage markm, ArrayList<Marks> listma, ArrayList<Student> listst, ArrayList<Subject> listsub){
+        Scanner s = new Scanner(System.in);
+        boolean menuma = true;
+        while(menuma)
+        {
+            System.out.println("*******Mark Manage*******");
+            System.out.println("||       1.Add         ||");
+            System.out.println("||       2.Edit        ||");
+            System.out.println("||       3.Delete      ||");
+            System.out.println("||       4.Show        ||");
+            System.out.println("||       5.Exit        ||");
+            System.out.println("*************************");
+            System.out.print("Chon chuc nang : ");
+            int choosead = s.nextInt();
+            switch (choosead) {
+            case 1:
+                    System.out.println("Add");
+                    listma.add(markm.add(listma,listst,listsub));
+                    break;   
+            case 2:
+                    System.out.println("Edit");
+                    markm.edit(listma,listst,listsub);
+                    break;
+            case 3:
+                    System.out.println("Delete");
+                    markm.delete(listma);
+                    break;
+            case 4:
+                    System.out.println("Show");
+                    System.out.printf("| %-3s | %-15s | %-15s | %-15s | %-15s| %-15s |%n","STT","ID","StudentID","StudentName","SubjectName","Mark");
+                    markm.show(listma);
+                    break;
+            case 5:
+                    menuma = false;
+                    break;
+            default:
+                    System.out.println("This option is not available! Please re-enter.");
+                    break;
+            }
+        }
+    }
 }

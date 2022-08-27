@@ -21,27 +21,22 @@ import java.util.logging.Logger;
 public class AdminManage implements Action<Admin> {
 
     @Override
-    public Admin add() {
+    public Admin add(ArrayList<Admin> listad) {
         Admin ad = new Admin();
         Scanner s = new Scanner(System.in);
         System.out.print("Enter AdminID:");
-        ad.setadminId(s.nextLine());
-        System.out.print("Enter Name:");
-        ad.setadminName(s.nextLine());
-        System.out.print("Enter DoB:");
-        SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            ad.setdob(date.parse(s.nextLine()));
-        } catch (ParseException ex) {
-            Logger.getLogger(AdminManage.class.getName()).log(Level.SEVERE, null, ex);
+        String id = s.nextLine();
+        while(findID(listad,id)){
+            System.out.println("Da co ID nay");
+            System.out.print("Xin moi nhap lai ID:");
+            id = s.nextLine();
         }
+        System.out.print("Enter Name:");
+        ad.setName(s.nextLine());
         System.out.print("Enter Email:");
-        ad.setemail(s.nextLine());
-        System.out.print("Enter Numberphone:");
-        ad.setphonenumber(s.nextInt());        
-        System.out.print("Enter Adress:");
-        s = new Scanner(System.in);
-        ad.setaddress(s.nextLine());
+        ad.setEmail(s.nextLine());
+        System.out.print("Enter Position:");
+        ad.setPosition(s.nextLine());
         return ad;
     }
 
@@ -52,52 +47,35 @@ public class AdminManage implements Action<Admin> {
         String tempID = s.nextLine();
         for (int i = 0; i < listad.size(); i++) {
             Admin admin = listad.get(i);
-            if(admin.getadminId().equals(tempID)){
+            if(admin.getID().equals(tempID)){
                 boolean a = true;
                 while(a)
                 {
                     System.out.println("****************************");
                     System.out.println("1.Edit name");
-                    System.out.println("2.Edit DoB");
-                    System.out.println("3.Edit email");
-                    System.out.println("4.Edit phonenumber");
-                    System.out.println("5.Edit address");
-                    System.out.println("6.Exit");
+                    System.out.println("2.Edit email");
+                    System.out.println("3.Edit position");
+                    System.out.println("4.Exit");
                     System.out.print("Chon chuc nang : ");
-                            int choose1 = s.nextInt();
-                            switch (choose1) {
+                            int check = s.nextInt();
+                            switch (check) {
                             case 1:
                                     System.out.print("Edit name: ");
                                     s = new Scanner(System.in);
                                     String temp = s.nextLine();
-                                    admin.setadminName(temp);
+                                    admin.setName(temp);
                                     break;
-
                             case 2:
-                                    System.out.print("Edit DoB");
-                                    SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
-                                    try {
-                                        admin.setdob(date.parse(s.nextLine()));
-                                    } catch (ParseException ex) {
-                                        Logger.getLogger(AdminManage.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
-                                    break;
-                            case 3:
                                     System.out.print("Edit email");
                                     s = new Scanner(System.in);
-                                    admin.setemail(s.nextLine());
+                                    admin.setEmail(s.nextLine());
+                                    break;
+                            case 3:
+                                    System.out.print("Edit position");
+                                    s = new Scanner(System.in);
+                                    admin.setPosition(s.nextLine());
                                     break;
                             case 4:
-                                    System.out.print("Edit phonenumber");
-                                    s = new Scanner(System.in);
-                                    admin.setphonenumber(s.nextInt());
-                                    break;
-                            case 5:
-                                    System.out.print("Edit address");
-                                    s = new Scanner(System.in);
-                                    admin.setaddress(s.nextLine());
-                                    break;
-                            case 6:
                                     System.out.println("Exit");
                                     a = false;
                                     break;
@@ -105,13 +83,14 @@ public class AdminManage implements Action<Admin> {
                                     System.out.println("Thang ngu co dau ma chon");
                                     break;
                             }
+                            return true;
                 }
             }
             else{
                 System.out.println("Khong tim thay ID nay");
             }
         }
-        return true;
+        return false;
     }
 
     @Override
@@ -120,7 +99,10 @@ public class AdminManage implements Action<Admin> {
         System.out.print("Nhap ID can xoa: ");
         String tempID = s.nextLine();
         for (int i = 0; i < listad.size(); i++) {
-            if(listad.get(i).getadminId().equals(tempID)){
+            if(listad.get(i).getID().equals(tempID)){
+                System.out.println("Ban co chac chan muon xoa?? Yes || No");
+                String comfirm = s.nextLine();
+                if(comfirm.equals("Yes"))
                 listad.remove(i);
                 System.out.println("Xoa thanh cong 1 thang ngu");
             }
@@ -134,8 +116,19 @@ public class AdminManage implements Action<Admin> {
     @Override
     public void show(ArrayList<Admin> listad) {
         for (int i = 0; i < listad.size(); i++) {
-            System.out.printf("|%-10s |%-15s | %-30s | %-15s| %-15s|%-10s |%n", listad.get(i).getadminId(),listad.get(i).getadminName(),listad.get(i).getdob(),listad.get(i).getemail(),listad.get(i).getphonenumber(),listad.get(i).getaddress());
+            System.out.printf("| %-3s | %-10s | %-20s | %-15s | %-15s |%n",i+1, listad.get(i).getID(),listad.get(i).getName(),listad.get(i).getEmail(),listad.get(i).getPosition());
         }
         
     }
+
+    @Override
+    public boolean findID(ArrayList<Admin> listad, String id) {
+        for (int i = 0; i < listad.size(); i++) {
+            if(id.equals(listad.get(i).getID())){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

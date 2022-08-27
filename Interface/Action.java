@@ -13,15 +13,10 @@ import java.util.ArrayList;
  */
 public interface Action<T> {
 
-    public Object add();
+    public Object add(ArrayList<T> items);
     public boolean edit(ArrayList<T> items);
     public boolean delete(ArrayList<T> items);
     public void show(ArrayList<T> items);
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+    public boolean findID(ArrayList<T> items, String id);
     
 }
